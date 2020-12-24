@@ -1,0 +1,109 @@
+06bcb364-ec95-11e9-81ff-28b2bd70b71d	盈利店川湘菜外卖店转让	https://short.58.com/zd_p/16db56d5-efe7-4b4b-b97b-ee43483f9107/?target=fe-16-xgk_femobwv_82303825273788q-feykn&end=end	https://pic4.58cdn.com.cn/mobile/tiny/n_v20f72d9ecbc5241259f783a4adf721e28.jpg?w=480&h=360&corp=1	黄浦-鲁班路	汇暻生活广场 商业街商铺  -1层
+	经营中	22000	550000	32	2019-10-12	15821863922	2019-10-12 10:07:22
+{
+	"reId":"",
+	"rePhone":"15821863922",
+	"reName":"",
+	"reType":1,
+	"province":"上海市",
+	"city":"上海城区",
+	"arer":"黄浦",
+	"shAddress":"汇暻生活广场 商业街商铺  -1层",
+	"shName":"川湘菜外卖店",
+	"rentPrice":"22000",
+	"attornPrice":"550000",
+	"shAcreage":32,
+	"shRegionType":"7",
+	"shType":"1",
+	"shParts":"2,9,3,10,11",
+	"shPic":"http://new.cbe.com.cn/img/2019-09-27/201909271601096.jpg",
+	"shDescribe":""
+}
+"reId":"31",									//发布者ID	
+"rePhone":"13576064042",							//发布人联系方式
+"reName":"张思",								//发布名称
+"reType":1,									//发布类型（1转让、2出租）
+"province":"上海市",								//省份
+"city":"上海城区",								//市
+"arer":"浦东新区",								//区
+"shAddress":"张江镇",								//商铺详细地址
+"shName":"火锅店",								//商铺名称
+"rentPrice":"3000000000",							//租出价格（月租）
+"attornPrice":"100000000000",							//转让价格
+"shAcreage":100,								//商铺面积
+"shRegionType":7,								//商铺区域类型（转商铺区域类型表）
+"shType":"1",									//商铺经营类型（转商铺经营类型表）
+"shParts":"2,9,3,10,11",							//商铺配套（转商铺配套）
+"shPic":"http://new.cbe.com.cn/img/2019-09-27/201909271601096.jpg",		//商铺图片
+"shDescribe":""									//商铺详细描述
+
+
+所有字段：：：：=====================================================================
+// 
+private Long id;
+//发布者ID
+private Integer reId;
+//省份
+private String province ;
+//市
+private String city ;
+//区
+private String arer ;
+//商铺名称
+private String shName;
+//商铺经营类型（转商铺经营类型表）
+private Integer shType;
+//商铺经营状态（1经营中、2暂停经营）
+private Integer shRunStatus;
+//商铺详细地址
+private String shAddress;
+//商铺面积
+private Integer shAcreage;
+//商铺面积宽
+private Integer shAcreageW;
+//商铺面积高
+private Integer shAcreageH;
+//商铺楼层高度
+private Integer shLayerH;
+//商铺楼层数
+private Integer shLayerNum;
+//商铺详细描述
+private String shDescribe;
+//商铺区域类型（转商铺区域类型表）
+private Integer shRegionType;
+//商铺图片
+private String shPic;
+//商铺配套（转商铺配套）
+private String shParts;
+//发布类型（1转让、2出租）
+private Integer reType;
+//转让价格
+private String attornPrice;
+//租出价格（月租）
+private String rentPrice;
+//租出时付款方式
+private String payMode;
+//剩余租期
+private Integer spareRentTerm;
+//发布状态（1审核中、2审核失败、3审核成功）
+private Integer reStatus;
+//发布名称
+private String reName;
+//发布人联系方式
+private String rePhone;
+//在线状态（1在线中、2已下线）
+private Integer onlineStatus;
+//发布时间
+private String reTime;
+//下线时间（成功交易时间）
+private String offlineTime;
+//浏览次数
+private Integer watchNum;
+//上线时间
+private String onlineTime;
+//管理员ID
+private Long managerId;
+//推荐指数（5.广告商铺，2.代理商铺，1.免费商铺）
+private Integer rcIndex;
+//更新日期
+private String updateTime;

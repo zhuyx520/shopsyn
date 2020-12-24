@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qiyue.shopsyn.dao.second.QyReleaseShopsMapper">
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.qiyue.shopsyn.entity.QyReleaseShopsEntity" id="qyReleaseShopsMap">
+        <result property="id" column="id"/>
+        <result property="reId" column="re_id"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="arer" column="arer"/>
+        <result property="shName" column="sh_name"/>
+        <result property="shType" column="sh_type"/>
+        <result property="shRunStatus" column="sh_run_status"/>
+        <result property="shAddress" column="sh_address"/>
+        <result property="shAcreage" column="sh_acreage"/>
+        <result property="shAcreageW" column="sh_acreage_w"/>
+        <result property="shAcreageH" column="sh_acreage_h"/>
+        <result property="shLayerH" column="sh_layer_h"/>
+        <result property="shLayerNum" column="sh_layer_num"/>
+        <result property="shDescribe" column="sh_describe"/>
+        <result property="shRegionType" column="sh_region_type"/>
+        <result property="shPic" column="sh_pic"/>
+        <result property="shParts" column="sh_parts"/>
+        <result property="reType" column="re_type"/>
+        <result property="attornPrice" column="attorn_price"/>
+        <result property="rentPrice" column="rent_price"/>
+        <result property="payMode" column="pay_mode"/>
+        <result property="spareRentTerm" column="spare_rent_term"/>
+        <result property="reStatus" column="re_status"/>
+        <result property="reName" column="re_name"/>
+        <result property="rePhone" column="re_phone"/>
+        <result property="onlineStatus" column="online_status"/>
+        <result property="reTime" column="re_time"/>
+        <result property="offlineTime" column="offline_time"/>
+        <result property="watchNum" column="watch_num"/> 
+        <result property="onlineTime" column="online_time"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="rcIndex" column="rc_index"/>
+        <result property="updateTime" column="update_time"/>
+  	</resultMap>
+  	
+  	
+	<select id="queryObject" resultMap="qyReleaseShopsMap">
+		select * from qy_release_shops where re_phone = #{value} limit 0,1
+	</select>
+	
+	<insert id="save" parameterType="com.qiyue.shopsyn.entity.QyReleaseShopsEntity">
+		insert into qy_release_shops
+		<set>
+			<if test="reId != null">`re_id` = #{reId}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="arer != null">`arer` = #{arer}, </if>
+			<if test="shName != null">`sh_name` = #{shName}, </if>
+			<if test="shType != null">`sh_type` = #{shType}, </if>
+			<if test="shRunStatus != null">`sh_run_status` = #{shRunStatus}, </if>
+			<if test="shAddress != null">`sh_address` = #{shAddress}, </if>
+			<if test="shAcreage != null">`sh_acreage` = #{shAcreage}, </if>
+			<if test="shAcreageW != null">`sh_acreage_w` = #{shAcreageW}, </if>
+			<if test="shAcreageH != null">`sh_acreage_h` = #{shAcreageH}, </if>
+			<if test="shLayerH != null">`sh_layer_h` = #{shLayerH}, </if>
+			<if test="shLayerNum != null">`sh_layer_num` = #{shLayerNum}, </if>
+			<if test="shDescribe != null">`sh_describe` = #{shDescribe}, </if>
+			<if test="shRegionType != null">`sh_region_type` = #{shRegionType}, </if>
+			<if test="shPic != null">`sh_pic` = #{shPic}, </if>
+			<if test="shParts != null">`sh_parts` = #{shParts}, </if>
+			<if test="reType != null">`re_type` = #{reType}, </if>
+			<if test="attornPrice != null">`attorn_price` = #{attornPrice}, </if>
+			<if test="rentPrice != null">`rent_price` = #{rentPrice}, </if>
+			<if test="payMode != null">`pay_mode` = #{payMode}, </if>
+			<if test="spareRentTerm != null">`spare_rent_term` = #{spareRentTerm}, </if>
+			<if test="reStatus != null">`re_status` = #{reStatus}, </if>
+			<if test="reName != null">`re_name` = #{reName}, </if>
+			<if test="rePhone != null">`re_phone` = #{rePhone}, </if>
+			<if test="onlineStatus != null">`online_status` = #{onlineStatus}, </if>
+			<if test="reTime != null">`re_time` = #{reTime}, </if>
+			<if test="offlineTime != null and offlineTime.trim()!=''">`offline_time` = #{offlineTime}, </if>
+			<if test="watchNum != null">`watch_num` = #{watchNum} ,</if> 
+			<if test="onlineTime != null">`online_time` = #{onlineTime} ,</if> 
+			<if test="managerId != null">`manager_id` = #{managerId} ,</if> 
+			<if test="rcIndex != null">`rc_index` = #{rcIndex} ,</if> 
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+	</insert>
+	 
+	<update id="update" parameterType="com.qiyue.shopsyn.entity.QyReleaseShopsEntity">
+		update qy_release_shops 
+		<set>
+			<if test="reId != null">`re_id` = #{reId}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="arer != null">`arer` = #{arer}, </if>
+			<if test="shName != null">`sh_name` = #{shName}, </if>
+			<if test="shType != null">`sh_type` = #{shType}, </if>
+			<if test="shRunStatus != null">`sh_run_status` = #{shRunStatus}, </if>
+			<if test="shAddress != null">`sh_address` = #{shAddress}, </if>
+			<if test="shAcreage != null">`sh_acreage` = #{shAcreage}, </if>
+			<if test="shAcreageW != null">`sh_acreage_w` = #{shAcreageW}, </if>
+			<if test="shAcreageH != null">`sh_acreage_h` = #{shAcreageH}, </if>
+			<if test="shLayerH != null">`sh_layer_h` = #{shLayerH}, </if>
+			<if test="shLayerNum != null">`sh_layer_num` = #{shLayerNum}, </if>
+			<if test="shDescribe != null">`sh_describe` = #{shDescribe}, </if>
+			<if test="shRegionType != null">`sh_region_type` = #{shRegionType}, </if>
+			<if test="shPic != null">`sh_pic` = #{shPic}, </if>
+			<if test="shParts != null">`sh_parts` = #{shParts}, </if>
+			<if test="reType != null">`re_type` = #{reType}, </if>
+			<if test="attornPrice != null">`attorn_price` = #{attornPrice}, </if>
+			<if test="rentPrice != null">`rent_price` = #{rentPrice}, </if>
+			<if test="payMode != null">`pay_mode` = #{payMode}, </if>
+			<if test="spareRentTerm != null">`spare_rent_term` = #{spareRentTerm}, </if>
+			<if test="reStatus != null">`re_status` = #{reStatus}, </if>
+			<if test="reName != null">`re_name` = #{reName}, </if>
+			<if test="rePhone != null">`re_phone` = #{rePhone}, </if>
+			<if test="onlineStatus != null">`online_status` = #{onlineStatus}, </if>
+			<if test="reTime != null">`re_time` = #{reTime}, </if>
+			<if test="offlineTime != null and offlineTime.trim()!=''">`offline_time` = #{offlineTime},</if>
+			<if test="watchNum != null">`watch_num` = #{watchNum} ,</if> 
+			<if test="onlineTime != null">`online_time` = #{onlineTime} ,</if> 
+			<if test="managerId != null">`manager_id` = #{managerId} ,</if> 
+			<if test="rcIndex != null">`rc_index` = #{rcIndex} ,</if> 
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+</mapper>

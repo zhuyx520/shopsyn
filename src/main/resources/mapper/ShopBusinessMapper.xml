@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiyue.shopsyn.dao.primary.ShopBusinessMapper">
+    <resultMap id="BaseResultMap" type="com.qiyue.shopsyn.entity.ShopBusinessBean">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="href" property="href" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="monthRent" property="monthRent" jdbcType="VARCHAR"/>
+        <result column="transferPrice" property="transferPrice" jdbcType="VARCHAR"/>
+        <result column="mortgagePayment" property="mortgagePayment" jdbcType="VARCHAR"/>
+        <result column="remainingTenancy" property="remainingTenancy" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="shopNature" property="shopNature" jdbcType="VARCHAR"/>
+        <result column="shopType" property="shopType" jdbcType="VARCHAR"/>
+        <result column="shopNature" property="shopNature" jdbcType="VARCHAR"/>
+        <result column="managementState" property="managementState" jdbcType="VARCHAR"/>
+        <result column="managementType" property="managementType" jdbcType="VARCHAR"/>
+        <result column="floor" property="floor" jdbcType="VARCHAR"/>
+        <result column="norms" property="norms" jdbcType="VARCHAR"/>
+        <result column="crowd" property="crowd" jdbcType="VARCHAR"/>
+        <result column="relatedCosts" property="relatedCosts" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="matched" property="matched" jdbcType="VARCHAR"/>
+        <result column="img" property="img" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="crowd" property="crowd" jdbcType="VARCHAR"/>
+        <result column="relatedCosts" property="relatedCosts" jdbcType="VARCHAR"/>
+        <result column="grabtime" property="grabtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, title, href, city, name, phone, monthRent, transferPrice ,mortgagePayment, remainingTenancy, area,
+        shopType, shopNature, managementState, managementType, floor, normsWide, normsHigh, normsDeep, description,
+        matched, img, region, address, crowd, relatedCosts, grabtime
+    </sql> 
+
+    <select id="getConditionMessage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from business_transfer_ganji where 1=1
+        <if test="shopBusinessVo.city != null and shopBusinessVo.city != ''">
+            and city like concat('%', #{shopBusinessVo.city},'%')
+        </if>
+        <if test="shopBusinessVo.grabtimeS != null and shopBusinessVo.grabtimeS != ''">
+            and grabtime &gt;= #{shopBusinessVo.grabtimeS}
+        </if>
+        <if test="shopBusinessVo.grabtimeE != null and shopBusinessVo.grabtimeE != ''">
+            and grabtime &lt;= #{shopBusinessVo.grabtimeE}
+        </if>
+    </select>
+
+    <!-- 既传入对象又传入参数，就不指定传入类型 -->
+    <select id="getPageConditionMessage" resultMap="BaseResultMap" parameterType="com.qiyue.shopsyn.vo.request.ShopBusinessVo">
+        select
+        <include refid="Base_Column_List"/>
+        from business_transfer_ganji where 1=1
+        <if test="shopBusinessVo.city != null and shopBusinessVo.city != ''">
+            and city like concat('%', #{shopBusinessVo.city},'%')
+        </if>
+        <if test="shopBusinessVo.grabtimeS != null and shopBusinessVo.grabtimeS != ''">
+            and grabtime &gt;= #{shopBusinessVo.grabtimeS}
+        </if>
+        <if test="shopBusinessVo.grabtimeE != null and shopBusinessVo.grabtimeE != ''">
+            and grabtime &lt;= #{shopBusinessVo.grabtimeE}
+        </if>
+        limit #{startLine},#{limit}
+    </select>
+
+    <!-- 既传入对象又传入参数，就不指定传入类型 -->
+    <select id="getPageConditionMessageGroupByPhone" resultMap="BaseResultMap" parameterType="com.qiyue.shopsyn.vo.request.ShopBusinessVo">
+        select
+        <include refid="Base_Column_List"/>
+        from business_transfer_ganji where 1=1
+        <if test="shopBusinessVo.grabtimeS != null and shopBusinessVo.grabtimeE != null">
+            and grabtime &gt;= #{shopBusinessVo.grabtimeS}
+            and grabtime &lt;= #{shopBusinessVo.grabtimeE}
+        </if>
+        group by phone
+        limit #{startLine},#{limit}
+    </select>
+
+</mapper>

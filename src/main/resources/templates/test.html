@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商铺信息展示页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <!--    <script src="/layui/jquery-3.0.0.min.js" charset="utf-8"></script>-->
+</head>
+<body>
+
+<div class="wrap-container clearfix">
+    <div class="column-content-detail">
+        <form class="layui-form" action="">
+            <div class="layui-form-item" style="margin-left:20px; width: 80%">
+                <div class="layui-inline">
+                    <input type="text" id="areaS" name="areaS" required lay-verify="required" placeholder="请输入最小面积"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <input type="text" id="areaE" name="areaE" required lay-verify="required" placeholder="请输入最大面积"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <button type="button" class="layui-btn layui-btn-normal" data-type="reload" id="selectbyCondition">
+                        搜索
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="layui-form" id="table-list">
+            <!-- <table class="layui-table"  lay-skin="nob" id="userTable"></table> -->
+            <table class="layui-hide" id="demo" lay-filter="test" lay-skin="nob"></table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:inline="none">
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#demo'
+            , height: 312
+            , url: '/shop/data/'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , page: true
+            , id: 'shopReload'
+            , cols: [[
+                {type: 'numbers', title: '序号', width: '5%', minWidth: 20}
+                , {field: 'title', title: '标题', width: '30%', minWidth: 100}
+                , {field: 'region', width: '15%', title: '区域', sort: true}
+                , {field: 'area', width: '15%', title: '面积', sort: true}
+                , {
+                    field: 'price', width: '15%', title: '价格', sort: true, templet: function (d) {
+                        if (d.price == '0') {
+                            return '面议'
+                        } else {
+                            return d.price
+                        }
+                    }
+                }
+                , {field: 'phone', width: '20%', title: '联系方式', sort: true}
+                // , {field: 'href', title: '链接', width: '30%', minWidth: 100} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+            ]]
+        });
+
+        //根据条件查询表格数据重新加载
+        var $ = layui.$, active = {
+            reload: function () {
+                //获取用户名
+                var title = $('#title');
+                var region = $('#region');
+                var areaS = $('#areaS');
+                var areaE = $('#areaE');
+                var priceS = $('#priceS');
+                var priceE = $('#priceE');
+
+                //执行重载
+                table.reload('shopReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    //根据条件查询
+                    , where: {
+                        title: title.val(),
+                        region: region.val(),
+                        areaS: areaS.val(),
+                        areaE: areaE.val(),
+                        priceS: priceS.val(),
+                        priceE: priceE.val(),
+                    }
+                });
+            }
+        };
+        //点击搜索按钮根据用户名称查询
+        $('#selectbyCondition').on('click',
+            function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+
+    });
+</script>
+
+<script type="text/html" id="xuhao">
+    {{d.LAY_TABLE_INDEX+1}}
+</script>
+</body>
+</html>
